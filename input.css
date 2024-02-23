@@ -100,3 +100,19 @@ p {
     background-color: rgba(51, 51, 51, 0.5); /* New background color on hover */
     color: white; /* New text color on hover */
 }
+#wrapper {
+    position: relative;
+    margin-right: 50px;
+}
+#ball {
+    height: 50px;
+    width: 50px;
+    background: blue;
+    border-radius: 50px;
+    position: absolute;
+    animation: animate 4s linear 0s infinite alternate;
+}
+@keyframes animate {
+    from { left: 100%; }
+    to { left: 0; }
+}
