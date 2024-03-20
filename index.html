@@ -1,15 +1,20 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Anna's Portfolio Website</title>
     <link rel="stylesheet" href="input.css"> <!-- Link to external CSS file -->
+    <link rel="icon" type="image/png" href="favicon.ico">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Poppins&display=swap" rel="stylesheet">
+    <script src="script.js"></script>
+
 </head>
+
 <body>
     <nav id="navbar">
         <div class="navbar-logo">
-            <a href="#home">Anna Belenko</a> 
+            <a href="#home"><img src="favicon.ico" alt="Logo" style="height: 16px; width: 16px; margin-right: 5px;">Anna Belenko</a> 
         </div>
         <div>
             <div class="navbar-links">
@@ -23,19 +28,34 @@
     <div id="gradient-box"> 
         <div id="gradient-text"> 
             <div class="container">
-                <h1><span id="highlight-text">Hi, I'm Anna</span></h1>
+                <h1><span id="highlight-text">Hello, I'm Anna</span></h1>
                 <p>A computer science student bridging the gap between technology and humans.</p>
-                <a href="https://example.com">
-                    <button id="my-button">Click Me</button>
+                <a href="https://drive.google.com/file/d/1i0WTBZrit-uqS0JK79baEgL11Ae0gR2t/view?usp=sharing">
+                    <button id="my-button">Resume</button>
                 </a>
             </div>
         </div>
     </div>
 </center>
-    <script src="script.js"></script>
+
     <div id="wrapper">
         <div id="ball"></div>
     </div>
-    <div id="placeholder">/Users/annabelenko/Documents/GitHub/personalwebsite/smiley-yellow.png</div>
+    <div id="placeholder">smiley-yellow.png</div>
+    <table id="sortableTable">
+        <thead>
+            <tr>
+                <th onclick="sortTable(0)">Name</th>
+                <th onclick="sortTable(1)">Age</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr><td>Alice</td><td>24</td></tr>
+            <tr><td>Bob</td><td>19</td></tr>
+            <tr><td>Charlie</td><td>30</td></tr>
+        </tbody>
+    </table>
+    
+    <script src="script.js"></script>
     </body>
 </html>

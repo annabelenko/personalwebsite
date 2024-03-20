@@ -62,5 +62,51 @@ document.addEventListener('DOMContentLoaded', function() {
     img.height = '300'; // Adjust as needed
     placeholder.parentNode.replaceChild(img, placeholder);
 });
+function sortTable(column) {
+    var table, rows, switching, i, x, y, shouldSwitch;
+    table = document.getElementById("sortableTable");
+    switching = true;
+    // Make a loop that will continue until no switching has been done
+    while (switching) {
+        // Start by saying: no switching is done
+        switching = false;
+        rows = table.rows;
+        // Loop through all table rows (except the first, which contains table headers)
+        for (i = 1; i < (rows.length - 1); i++) {
+            // Start by saying there should be no switching
+            shouldSwitch = false;
+            // Get the two elements you want to compare, one from current row and one from the next
+            x = rows[i].getElementsByTagName("TD")[column];
+            y = rows[i + 1].getElementsByTagName("TD")[column];
+            // Check if the two rows should switch place, based on the direction, asc or desc
+            if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+                // If so, mark as a switch and break the loop
+                shouldSwitch = true;
+                break;
+            }
+        }
+        if (shouldSwitch) {
+            // If a switch has been marked, make the switch and mark that a switch has been done
+            rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+            switching = true;
+        }
+    }
+    // After sorting, animate the row movement
+    animateRows(table);
+}
+
+function animateRows(table) {
+    var rows = table.getElementsByTagName("tr");
+    // Apply a temporary animation class or directly apply styles
+    for (let i = 1; i < rows.length; i++) { // Start with 1 to skip table header
+        let row = rows[i];
+        // Reset the transition, then apply new positioning
+        row.style.transition = 'none';
+        row.offsetHeight; // Trigger reflow to reset transition
+        row.style.transition = 'transform 0.3s ease';
+        row.style.transform = 'translateY(' + ((i - 1) * row.offsetHeight) + 'px)';
+    }
+}
+
 
 
