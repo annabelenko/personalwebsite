@@ -120,10 +120,10 @@ p {
 #ball {
     height: 50px;
     width: 50px;
-    background: blue;
+    background-image: url('smiley-yellow.png');
     border-radius: 50px;
     position: absolute;
-    animation: animate 4s linear 0s infinite alternate;
+    animation: animate 6s linear 0s infinite alternate;
 }
 @keyframes animate {
     from { left: 100%; }
@@ -145,8 +145,6 @@ p {
     font-size: 16px;
 }
 
-
-
 .filter-container button:hover {
     background-color: #666;
 }
@@ -159,33 +157,19 @@ p {
 }
 
 .portfolio-item {
-    flex-basis: calc(33% - 20px);
+    flex-basis: calc(42% - 20px);
     margin-bottom: 20px;
     box-shadow: 0 4px 8px rgba(0,0,0,0.1);
     border-radius: 10px;
     overflow: hidden;
-    transform: scale(1);
     transition: transform 0.3s ease;
-    background-color: #666;
-
-}
-.portfolio-item {
+    /*background-color: #666;*/
     transition: transform 0.5s, opacity 0.5s;
     opacity: 0;
     transform: scale(0.5);
     display: block; /* Initial state set to block to participate in the transition */
     /* Additional styles here */
 }
-
-/* Make sure to set the initial visibility of items when the page loads */
-document.addEventListener('DOMContentLoaded', function() {
-    let items = document.getElementsByClassName('portfolio-item');
-    for (let i = 0; i < items.length; i++) {
-        items[i].style.opacity = '1';
-        items[i].style.transform = 'scale(1)';
-    }
-});
-
 .portfolio-item img {
     width: 100%;
     display: block;

@@ -62,6 +62,9 @@ document.addEventListener('DOMContentLoaded', function() {
     img.height = '300'; // Adjust as needed
     placeholder.parentNode.replaceChild(img, placeholder);
 });
+
+
+
 function filterSelection(category) {
     let items = Array.from(document.getElementsByClassName('portfolio-item'));
     let delay = 500; // This should match the longest duration of your CSS transitions
