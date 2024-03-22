@@ -56,6 +56,7 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 
+
 document.addEventListener('DOMContentLoaded', function() {
     const mover = document.getElementById('mover');
     const container = document.getElementById('gradient-box');
@@ -63,23 +64,6 @@ document.addEventListener('DOMContentLoaded', function() {
     let posX = 0;
     let posY = 0;
     const speed = 5; // Speed of movement
-
-    // Assuming spriteData is already the parsed JSON object from your spritesheet JSON
-    const spriteData = {
-        "frames": [
-            // Array of your frame data here
-        ]
-    };
-    let currentFrameIndex = 0;
-    let frameCount = spriteData.frames.length;
-
-    function updateFrame() {
-        const frame = spriteData.frames[currentFrameIndex].frame;
-        mover.style.width = frame.w + 'px';
-        mover.style.height = frame.h + 'px';
-        mover.style.backgroundPosition = `-${frame.x}px -${frame.y}px`;
-        currentFrameIndex = (currentFrameIndex + 1) % frameCount;
-    }
 
     function moveMover() {
         const containerWidth = container.offsetWidth - mover.offsetWidth;
@@ -106,10 +90,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
         mover.style.left = posX + 'px';
         mover.style.top = posY + 'px';
-        updateFrame(); // Update the frame for animation
     }
 
-    setInterval(moveMover, 100); // Adjust as needed for movement and frame update speed
+    setInterval(moveMover, 20);
 
     // Optional: Implement hover to pause/resume functionality
     let moving = true;
@@ -121,6 +104,67 @@ document.addEventListener('DOMContentLoaded', function() {
         moving = true;
     });
 });
+//< -- Stick Figure -->
+
+
+document.addEventListener('DOMContentLoaded', function() {
+    const jsonUrl = 'spritesheet.json'; // Adjust this to the path of your JSON file
+
+    fetch(jsonUrl)
+        .then(response => response.json())
+        .then(data => startStickFigureAnimation(data))
+        .catch(error => console.error('Error loading JSON:', error));
+});
+
+//< -- Stick Figure -->
+
+function startStickFigureAnimation(spriteData) {
+    const stickFigure = document.getElementById('stick-figure');
+    let currentFrameIndex = 0;
+    let posX = 0;
+    let baseSpeed = 2; // Base speed of movement across the screen
+    let currentSpeed = baseSpeed; // Current speed starts at base speed
+    let intervalTime = 100; // Time between interval executions in milliseconds
+    let intervalId;
+
+    function updateFrame() {
+        const frame = spriteData.frames[currentFrameIndex].frame;
+        stickFigure.style.backgroundPosition = `-${frame.x}px -${frame.y}px`;
+        currentFrameIndex = (currentFrameIndex + 1) % spriteData.frames.length;
+    }
+
+    function moveStickFigure() {
+        posX += currentSpeed;
+        if (posX > window.innerWidth) {
+            posX = -stickFigure.offsetWidth; // Reset position to loop animation
+        }
+        stickFigure.style.left = `${posX}px`;
+        updateFrame();
+    }
+
+    function startAnimation() {
+        if (intervalId) {
+            clearInterval(intervalId); // Ensure we don't have multiple intervals running
+        }
+        intervalId = setInterval(moveStickFigure, intervalTime);
+    }
+
+    // Start the animation
+    startAnimation();
+
+    // Event listener for mouseover to slow down the animation
+    stickFigure.addEventListener('mouseover', function() {
+        currentSpeed = baseSpeed / 2; // Reduce the speed by half when hovering
+        startAnimation(); // Restart the animation with the new speed
+    });
+
+    // Event listener for mouseout to restore the animation speed
+    stickFigure.addEventListener('mouseout', function() {
+        currentSpeed = baseSpeed; // Restore the original speed when not hovering
+        startAnimation(); // Restart the animation with the original speed
+    });
+}
+
 
 
 
