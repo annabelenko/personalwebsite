@@ -58,49 +58,53 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 document.addEventListener('DOMContentLoaded', function() {
-    var mover = document.getElementById('mover');
-    var container = document.getElementById('container');
-    var moving = true; // Flag to control movement
-    var posX = 0;
-    var dir = 1;
-    var intervalId;
+    const mover = document.getElementById('mover');
+    const container = document.getElementById('gradient-box');
+    let direction = 'right';
+    let posX = 0;
+    let posY = 0;
+    const speed = 5; // Speed of movement
 
     function moveMover() {
-        if (moving) {
-            // Calculate new position
-            posX += dir * 5; // Adjust speed as needed
-            if (posX + mover.offsetWidth >= container.offsetWidth || posX <= 0) {
-                dir *= -1; // Change direction at bounds
-            }
-            mover.style.left = posX + 'px';
+        const containerWidth = container.offsetWidth - mover.offsetWidth;
+        const containerHeight = container.offsetHeight - mover.offsetHeight;
+
+        switch(direction) {
+            case 'right':
+                if (posX < containerWidth) posX += speed;
+                else direction = 'down';
+                break;
+            case 'down':
+                if (posY < containerHeight) posY += speed;
+                else direction = 'left';
+                break;
+            case 'left':
+                if (posX > 0) posX -= speed;
+                else direction = 'up';
+                break;
+            case 'up':
+                if (posY > 0) posY -= speed;
+                else direction = 'right';
+                break;
         }
+
+        mover.style.left = posX + 'px';
+        mover.style.top = posY + 'px';
     }
 
-    function startMoving() {
-        if (!intervalId) { // Prevent multiple intervals
-            intervalId = setInterval(moveMover, 20); // Adjust timing for smoother animation
-        }
-    }
+    setInterval(moveMover, 20);
 
-    function stopMoving() {
-        clearInterval(intervalId); // Clear existing interval
-        intervalId = null; // Reset interval ID
-    }
-
+    // Optional: Implement hover to pause/resume functionality
+    let moving = true;
     mover.addEventListener('mouseover', function() {
-        moving = false; // Stop moving
-        mover.style.transition = 'transform 0.5s ease'; // Smooth transition for stopping
-        mover.style.transform = 'scale(1.1)'; // Visual cue for stopping
+        moving = false;
     });
 
     mover.addEventListener('mouseout', function() {
-        moving = true; // Resume moving
-        mover.style.transform = 'scale(1)'; // Reset scaling
-        startMoving(); // Restart movement
+        moving = true;
     });
-
-    startMoving(); // Initial call to start moving
 });
+
 
 
 

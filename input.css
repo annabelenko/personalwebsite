@@ -15,7 +15,11 @@ html, body {
 }
 h1 {
     font-family: "Archivo Black", sans-serif;
+    color: white;
+    text-align: center;
+    font-size: 70px;
 }
+
 p {
     font-family: "Poppins", sans-serif;
 }
@@ -114,16 +118,6 @@ p {
     background-color: rgba(51, 51, 51, 0.5); /* New background color on hover */
     color: white; /* New text color on hover */
 }
-#wrapper {
-    position: relative;
-    margin-right: 50px;
-}
-
-#container {
-    position: relative;
-    width: 100%; /* Adjust as needed */
-    height: 200px; /* Adjust as needed */
-}
 
 #mover {
     position: absolute;
@@ -132,8 +126,8 @@ p {
     background-image: url('smiley-yellow.png'); /* Adjust as needed */
     border-radius: 50%; /* For circular shape */
     transition: transform 0.5s ease; /* Smooth transition for scaling */
+    left: 0px; /* Ensure an initial position is set */
 }
-
 
 .filter-container {
     text-align: center;
@@ -164,7 +158,6 @@ p {
 .portfolio-item {
     flex-basis: calc(42% - 20px);
     margin-bottom: 20px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
     border-radius: 10px;
     overflow: hidden;
     transition: transform 0.3s ease;
@@ -182,8 +175,13 @@ p {
 }
 
 .portfolio-item p {
-    padding: 15px;
-    margin: 0;
+    color: white;
+    background-color: gray; /* Background color */
+    padding: 10px 20px;
+    border-radius: 25px; /* Rounded corners */
+    display: inline-block; /* Make background match text length */
+    margin: 0 5px;
+    font-size: 16px;
 }
 
 /* This will hide the filtered-out items */
