@@ -52,9 +52,8 @@ function filterSelection(category) {
 
 // Initial call to show all items
 document.addEventListener('DOMContentLoaded', function() {
-    filterSelection('all');
+    filterSelection('software');
 });
-
 
 
 document.addEventListener('DOMContentLoaded', function() {
@@ -64,6 +63,23 @@ document.addEventListener('DOMContentLoaded', function() {
     let posX = 0;
     let posY = 0;
     const speed = 5; // Speed of movement
+
+    // Assuming spriteData is already the parsed JSON object from your spritesheet JSON
+    const spriteData = {
+        "frames": [
+            // Array of your frame data here
+        ]
+    };
+    let currentFrameIndex = 0;
+    let frameCount = spriteData.frames.length;
+
+    function updateFrame() {
+        const frame = spriteData.frames[currentFrameIndex].frame;
+        mover.style.width = frame.w + 'px';
+        mover.style.height = frame.h + 'px';
+        mover.style.backgroundPosition = `-${frame.x}px -${frame.y}px`;
+        currentFrameIndex = (currentFrameIndex + 1) % frameCount;
+    }
 
     function moveMover() {
         const containerWidth = container.offsetWidth - mover.offsetWidth;
@@ -90,9 +106,10 @@ document.addEventListener('DOMContentLoaded', function() {
 
         mover.style.left = posX + 'px';
         mover.style.top = posY + 'px';
+        updateFrame(); // Update the frame for animation
     }
 
-    setInterval(moveMover, 20);
+    setInterval(moveMover, 100); // Adjust as needed for movement and frame update speed
 
     // Optional: Implement hover to pause/resume functionality
     let moving = true;

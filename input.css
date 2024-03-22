@@ -19,6 +19,16 @@ h1 {
     text-align: center;
     font-size: 70px;
 }
+h2 {
+    font-family: "Poppins", sans-serif;
+    color: white;
+    font-size: 20px;
+
+}
+h3 {
+    font-family: "Poppins", sans-serif;
+
+}
 
 p {
     font-family: "Poppins", sans-serif;
@@ -118,16 +128,15 @@ p {
     background-color: rgba(51, 51, 51, 0.5); /* New background color on hover */
     color: white; /* New text color on hover */
 }
-
 #mover {
     position: absolute;
-    width: 50px; /* Adjust as needed */
-    height: 50px; /* Adjust as needed */
-    background-image: url('smiley-yellow.png'); /* Adjust as needed */
-    border-radius: 50%; /* For circular shape */
-    transition: transform 0.5s ease; /* Smooth transition for scaling */
-    left: 0px; /* Ensure an initial position is set */
+    width: 112px; /* Width of a single frame from the sprite sheet */
+    height: 110px; /* Height of a single frame from the sprite sheet */
+    background-image: url('spritesheet.png');
+    background-repeat: no-repeat;
+    transition: background-position 0.1s steps(1); /* Smooth transition for the frame change */
 }
+
 
 .filter-container {
     text-align: center;
@@ -135,17 +144,17 @@ p {
 }
 
 .filter-container button {
+    text-align: center;
     cursor: pointer;
     padding: 10px 20px;
     border: none;
     margin: 0 5px;
     border-radius: 25px;
     font-family: "Poppins", sans-serif;
-    font-size: 16px;
-}
+    font-size: 20px;
+    color: white;
+    transition: background-color 0.3s ease, color 0.3s ease;
 
-.filter-container button:hover {
-    background-color: #666;
 }
 
 .portfolio-container {
@@ -156,9 +165,9 @@ p {
 }
 
 .portfolio-item {
+    text-align: center;
     flex-basis: calc(42% - 20px);
     margin-bottom: 20px;
-    border-radius: 10px;
     overflow: hidden;
     transition: transform 0.3s ease;
     /*background-color: #666;*/
@@ -171,17 +180,19 @@ p {
 .portfolio-item img {
     width: 100%;
     display: block;
-    border-bottom: 1px solid #eee;
+    border-radius: 25px;
+
 }
 
-.portfolio-item p {
-    color: white;
-    background-color: gray; /* Background color */
+.portfolio-item h3 {
+    color: gray;
+    background-color: #292929; /* Background color */
     padding: 10px 20px;
     border-radius: 25px; /* Rounded corners */
     display: inline-block; /* Make background match text length */
     margin: 0 5px;
     font-size: 16px;
+    
 }
 
 /* This will hide the filtered-out items */
