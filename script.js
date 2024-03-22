@@ -93,16 +93,6 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     setInterval(moveMover, 20);
-
-    // Optional: Implement hover to pause/resume functionality
-    let moving = true;
-    mover.addEventListener('mouseover', function() {
-        moving = false;
-    });
-
-    mover.addEventListener('mouseout', function() {
-        moving = true;
-    });
 });
 //< -- Stick Figure -->
 
@@ -122,46 +112,40 @@ function startStickFigureAnimation(spriteData) {
     const stickFigure = document.getElementById('stick-figure');
     let currentFrameIndex = 0;
     let posX = 0;
-    let baseSpeed = 2; // Base speed of movement across the screen
-    let currentSpeed = baseSpeed; // Current speed starts at base speed
-    let intervalTime = 100; // Time between interval executions in milliseconds
-    let intervalId;
+    let speed = 5; // Increased speed of movement across the screen
 
     function updateFrame() {
-        const frame = spriteData.frames[currentFrameIndex].frame;
-        stickFigure.style.backgroundPosition = `-${frame.x}px -${frame.y}px`;
-        currentFrameIndex = (currentFrameIndex + 1) % spriteData.frames.length;
+        if (speed !== 0) {
+            const frame = spriteData.frames[currentFrameIndex].frame;
+            stickFigure.style.backgroundPosition = `-${frame.x}px -${frame.y}px`;
+            currentFrameIndex = (currentFrameIndex + 1) % spriteData.frames.length;
+        }
     }
 
     function moveStickFigure() {
-        posX += currentSpeed;
-        if (posX > window.innerWidth) {
-            posX = -stickFigure.offsetWidth; // Reset position to loop animation
+        if (speed !== 0) {
+            posX += speed;
+            if (posX > window.innerWidth) {
+                posX = -stickFigure.offsetWidth; // Reset position to loop animation
+            }
+            stickFigure.style.left = `${posX}px`;
         }
-        stickFigure.style.left = `${posX}px`;
+    }
+
+    // Update the stick figure every 50 milliseconds for a smoother and faster animation
+    intervalId = setInterval(function() {
         updateFrame();
-    }
+        moveStickFigure();
+    }, 50); // Faster interval for smoother animation
 
-    function startAnimation() {
-        if (intervalId) {
-            clearInterval(intervalId); // Ensure we don't have multiple intervals running
-        }
-        intervalId = setInterval(moveStickFigure, intervalTime);
-    }
-
-    // Start the animation
-    startAnimation();
-
-    // Event listener for mouseover to slow down the animation
+    // Adjust speed on hover
     stickFigure.addEventListener('mouseover', function() {
-        currentSpeed = baseSpeed / 2; // Reduce the speed by half when hovering
-        startAnimation(); // Restart the animation with the new speed
+        speed /= 2; // Slow down by half when hovering
     });
 
-    // Event listener for mouseout to restore the animation speed
+    // Restore speed on mouseout
     stickFigure.addEventListener('mouseout', function() {
-        currentSpeed = baseSpeed; // Restore the original speed when not hovering
-        startAnimation(); // Restart the animation with the original speed
+        speed *= 2; // Double the speed to return to normal when not hovering
     });
 }
 
