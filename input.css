@@ -96,6 +96,7 @@ p {
     background-color: #ddd;
     color: black;
     border-radius: 25px;
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 p {
     font-size: 20px; /* Change this value to your desired font size */
@@ -117,18 +118,22 @@ p {
     position: relative;
     margin-right: 50px;
 }
-#ball {
-    height: 50px;
-    width: 50px;
-    background-image: url('smiley-yellow.png');
-    border-radius: 50px;
+
+#container {
+    position: relative;
+    width: 100%; /* Adjust as needed */
+    height: 200px; /* Adjust as needed */
+}
+
+#mover {
     position: absolute;
-    animation: animate 6s linear 0s infinite alternate;
+    width: 50px; /* Adjust as needed */
+    height: 50px; /* Adjust as needed */
+    background-image: url('smiley-yellow.png'); /* Adjust as needed */
+    border-radius: 50%; /* For circular shape */
+    transition: transform 0.5s ease; /* Smooth transition for scaling */
 }
-@keyframes animate {
-    from { left: 100%; }
-    to { left: 0; }
-}
+
 
 .filter-container {
     text-align: center;

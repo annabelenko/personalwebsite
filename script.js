@@ -21,50 +21,6 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 });
 
-document.addEventListener('DOMContentLoaded', function() {
-    // Your replacement code here
-    var parent = document.getElementById('container'); // Element that holds the mover
-    var mover = document.getElementById('mover'); // The mover, can be anything
-    var dir = 1; // The direction we are moving... 1 is right, -1 is left.
-    var dist = 10; // The distance we move each "tick"
-
-    // The ID will let us stop it later if we want.
-    var intervalId = setInterval(function() {
-        // Get the left, remove the "px" from the end and convert it to an integer.
-        var posX = parseInt(mover.style.left.replace(/px$/, '')) || 0;
-
-        // Add dir * dist
-        posX += dir * dist;
-
-        // If we are moving right and we've gone over the right edge...
-        if (dir == 1 && posX + mover.offsetWidth > parent.offsetWidth) {
-            // only move right to the edge...
-            posX -= posX + mover.offsetWidth - parent.offsetWidth;
-            // and change direction.
-            dir *= -1
-        // If we are moving left and we've gone over the left edge...
-        } else if (dir == -1 && posX < 0) {
-            // stop at zero...
-            posX = 0;
-            // and change direction...
-            dir *= -1;
-        }
-
-        // Set the new position
-        mover.style.left = posX + "px";
-    }, 100); // this number is how many milliseconds in between each move.
-    // Smaller interval time means smoother movement but slower performance.
-    var placeholder = document.getElementById('placeholder');
-    var img = document.createElement('img');
-    img.src = placeholder.innerText.trim(); // Using the text from the placeholder as the source
-    img.alt = 'Smiley Face';
-    img.width = '300'; // Adjust as needed
-    img.height = '300'; // Adjust as needed
-    placeholder.parentNode.replaceChild(img, placeholder);
-});
-
-
-
 function filterSelection(category) {
     let items = Array.from(document.getElementsByClassName('portfolio-item'));
     let delay = 500; // This should match the longest duration of your CSS transitions
@@ -101,7 +57,51 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 
-  
+document.addEventListener('DOMContentLoaded', function() {
+    var mover = document.getElementById('mover');
+    var container = document.getElementById('container');
+    var moving = true; // Flag to control movement
+    var posX = 0;
+    var dir = 1;
+    var intervalId;
+
+    function moveMover() {
+        if (moving) {
+            // Calculate new position
+            posX += dir * 5; // Adjust speed as needed
+            if (posX + mover.offsetWidth >= container.offsetWidth || posX <= 0) {
+                dir *= -1; // Change direction at bounds
+            }
+            mover.style.left = posX + 'px';
+        }
+    }
+
+    function startMoving() {
+        if (!intervalId) { // Prevent multiple intervals
+            intervalId = setInterval(moveMover, 20); // Adjust timing for smoother animation
+        }
+    }
+
+    function stopMoving() {
+        clearInterval(intervalId); // Clear existing interval
+        intervalId = null; // Reset interval ID
+    }
+
+    mover.addEventListener('mouseover', function() {
+        moving = false; // Stop moving
+        mover.style.transition = 'transform 0.5s ease'; // Smooth transition for stopping
+        mover.style.transform = 'scale(1.1)'; // Visual cue for stopping
+    });
+
+    mover.addEventListener('mouseout', function() {
+        moving = true; // Resume moving
+        mover.style.transform = 'scale(1)'; // Reset scaling
+        startMoving(); // Restart movement
+    });
+
+    startMoving(); // Initial call to start moving
+});
+
 
 
 
