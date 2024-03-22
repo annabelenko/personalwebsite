@@ -52,7 +52,7 @@ function filterSelection(category) {
 
 // Initial call to show all items
 document.addEventListener('DOMContentLoaded', function() {
-    filterSelection('software');
+    filterSelection('all');
 });
 
 
