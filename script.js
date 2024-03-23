@@ -112,7 +112,7 @@ function startStickFigureAnimation(spriteData) {
     const stickFigure = document.getElementById('stick-figure');
     let currentFrameIndex = 0;
     let posX = 0;
-    let speed = 5; // Increased speed of movement across the screen
+    let speed = 10000; // Increased speed of movement across the screen
 
     function updateFrame() {
         if (speed !== 0) {
@@ -140,12 +140,12 @@ function startStickFigureAnimation(spriteData) {
 
     // Adjust speed on hover
     stickFigure.addEventListener('mouseover', function() {
-        speed /= 2; // Slow down by half when hovering
+        speed /= 10; // Slow down by half when hovering
     });
 
     // Restore speed on mouseout
     stickFigure.addEventListener('mouseout', function() {
-        speed *= 2; // Double the speed to return to normal when not hovering
+        speed *= 10; // Double the speed to return to normal when not hovering
     });
 }
 
