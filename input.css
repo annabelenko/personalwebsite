@@ -129,27 +129,27 @@ p {
     color: white; /* New text color on hover */
 }
 
-#mover {
+/*#mover {
     
     position: absolute;
-    width: 50px; /* Adjust as needed */
-    height: 50px; /* Adjust as needed */
-    background-image: url('smiley-yellow.png'); /* Adjust as needed */
-    border-radius: 50%; /* For circular shape */
-    transition: transform 0.5s ease; /* Smooth transition for scaling */
-    left: 0px; /* Ensure an initial position is set */
+    width: 50px; /* Adjust as needed 
+    height: 50px; /* Adjust as needed 
+    background-image: url('smiley-yellow.png'); /* Adjust as needed 
+    border-radius: 50%; /* For circular shape 
+    transition: transform 0.5s ease; /* Smooth transition for scaling 
+    left: 0px; /* Ensure an initial position is set 
 }
 
 #stick-figure {
     position: absolute;
-    top: 50%; /* Centers vertically. Adjust as needed */
-    left: 0; /* Start from the left side of the screen */
-    width: 112px; /* Frame width. Adjust according to your sprite sheet */
-    height: 110px; /* Frame height. Adjust according to your sprite sheet */
-    background-image: url('spritesheet.png'); /* Path to sprite sheet */
+    top: 50%; /* Centers vertically. Adjust as needed 
+    left: 0; /* Start from the left side of the screen 
+    width: 112px; /* Frame width. Adjust according to your sprite sheet 
+    height: 110px; /* Frame height. Adjust according to your sprite sheet 
+    background-image: url('spritesheet.png'); /* Path to sprite sheet 
     background-repeat: no-repeat;
-    transform: translateY(-50%); /* Centers the div vertically based on its height */
-}
+    transform: translateY(-50%); /* Centers the div vertically based on its height 
+}*/
 
 .filter-container {
     text-align: center;
