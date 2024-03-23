@@ -112,7 +112,7 @@ function startStickFigureAnimation(spriteData) {
     const stickFigure = document.getElementById('stick-figure');
     let currentFrameIndex = 0;
     let posX = 0;
-    let speed = 10000; // Increased speed of movement across the screen
+    let speed = 10; // Increased speed of movement across the screen
 
     function updateFrame() {
         if (speed !== 0) {
